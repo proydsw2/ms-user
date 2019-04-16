@@ -17,8 +17,6 @@ import com.cibertec.dsw2.user;
 @RequestMapping(path = "{/dsw2}")
 public class UserController {
 
-    @PersistenceContext
-    private EntityManager em;
 
     //    @PreAuthorize("hasAuthority('role_admin')")
 

@@ -1,7 +1,7 @@
 spring.datasource:
-  url: proydsw2.cqgcktgw7rag.us-east-1.rds.amazonaws.com
+  url: jdbc:mysql://proydsw2.cqgcktgw7rag.us-east-1.rds.amazonaws.com:3306/dsw219
   username: jalrg_cibertec
-  password: Jorge0308
+  password: Cibertec2019
   driver-class-name: com.mysql.jdbc.Driver
   tomcat:
     test-while-idle: true
