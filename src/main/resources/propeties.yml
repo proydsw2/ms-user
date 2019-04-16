@@ -1,0 +1,24 @@
+spring.datasource:
+  url: proydsw2.cqgcktgw7rag.us-east-1.rds.amazonaws.com
+  username: jalrg_cibertec
+  password: Jorge0308
+  driver-class-name: com.mysql.jdbc.Driver
+  tomcat:
+    test-while-idle: true
+    validation-query: SELECT 1
+
+
+server:
+  port: 6000
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+  main:
+    allow-bean-definition-overriding: true
+
