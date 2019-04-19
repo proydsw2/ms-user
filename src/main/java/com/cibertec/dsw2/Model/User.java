@@ -1,4 +1,4 @@
-package com.cibertec.dsw2;
+package com.cibertec.dsw2.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
 @javax.persistence.Entity
 
-public class user {
+public class User {
 
     @Id
     @GeneratedValue()
