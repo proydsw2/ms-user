@@ -1,49 +1,85 @@
 package com.cibertec.dsw2.Model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@com.fasterxml.jackson.annotation.JsonIgnoreProperties(ignoreUnknown = true)
-@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)
-@javax.persistence.Entity
-
+@Entity
 public class User {
 
     @Id
-    @GeneratedValue()
-    @JsonProperty("id")
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "num_user_id")
+    private Long num_user_id;
 
-    @JsonProperty("username")
-    private String username;
+    @Column(name = "str_username")
+    private String str_username;
 
-    @JsonProperty("password")
-    private String password;
+    @Column(name = "str_password")
+    private String str_password;
 
+    @Column(name = "num_customer_id")
+    private String num_customer_id;
 
-    public Integer getId() {
-        return id;
+    @Column(name = "chr_status")
+    private String chr_status;
+
+    public User() {
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public User(String str_username, String str_password, String num_customer_id, String chr_status) {
+        this.str_username = str_username;
+        this.str_password = str_password;
+        this.num_customer_id = num_customer_id;
+        this.chr_status = chr_status;
     }
 
-    public String getUsername() {
-        return username;
+    @Override
+    public String toString() {
+        return "User{" +
+                "num_user_id=" + num_user_id +
+                ", str_username='" + str_username + '\'' +
+                ", str_password='" + str_password + '\'' +
+                ", num_customer_id='" + num_customer_id + '\'' +
+                ", chr_status='" + chr_status + '\'' +
+                '}';
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Long getNum_user_id() {
+        return num_user_id;
     }
 
-    public String getPassword() {
-        return password;
+    public void setNum_user_id(Long num_user_id) {
+        this.num_user_id = num_user_id;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getStr_username() {
+        return str_username;
+    }
+
+    public void setStr_username(String str_username) {
+        this.str_username = str_username;
+    }
+
+    public String getStr_password() {
+        return str_password;
+    }
+
+    public void setStr_password(String str_password) {
+        this.str_password = str_password;
+    }
+
+    public String getNum_customer_id() {
+        return num_customer_id;
+    }
+
+    public void setNum_customer_id(String num_customer_id) {
+        this.num_customer_id = num_customer_id;
+    }
+
+    public String getChr_status() {
+        return chr_status;
+    }
+
+    public void setChr_status(String chr_status) {
+        this.chr_status = chr_status;
     }
 }

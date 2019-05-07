@@ -14,7 +14,6 @@ import java.util.Optional;
 import com.cibertec.dsw2.Model.User;
 
 @RestController
-@RequestMapping(path = "{/dsw2}")
 public class UserController {
 
 
@@ -25,45 +24,45 @@ public class UserController {
     @Autowired
     private UserRepository repository;
 
-    @GetMapping(path = {"/user", "/user/"})
+    @GetMapping(path = "/user")
     public List<User> retriveAll() {
         return repository.findAll();
     }
 
-    @GetMapping(path = {"/user/{id}", "/user/{id}/"})
-    public User retriveOne(@PathVariable Integer id) {
+    @GetMapping(path = "/user/{id}")
+    public User retriveOne(@PathVariable Long id) {
         Optional<User> user = repository.findById(id);
 
         return user.get();
     }
 
-    @PostMapping(path = {"/user", "/user/"})
+    @PostMapping(path = "/user")
     public ResponseEntity<Object> create(@RequestBody User user) {
         User entity = repository.save(user);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(entity.getId()).toUri();
+                .buildAndExpand(entity.getNum_user_id()).toUri();
 
         return ResponseEntity.created(location).build();
     }
 
-    @PutMapping(path = {"/user/{id}", "/user/{id}/"})
-    public ResponseEntity<Object> update(@PathVariable Integer id, @RequestBody User user) {
+    @PutMapping(path = "/user/{id}")
+    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody User user) {
         Optional<User> entity = repository.findById(id);
 
         if (!entity.isPresent()) {
             return ResponseEntity.notFound().build();
         }
 
-        user.setId(id);
+        user.setNum_user_id(id);
         repository.save(user);
 
         return ResponseEntity.noContent().build();
 
     }
 
-    @DeleteMapping(path = {"/user/{id}", "/user/{id}/"})
-    public void delete(@PathVariable Integer id) {
+    @DeleteMapping(path = "/user/{id}")
+    public void delete(@PathVariable Long id) {
         repository.deleteById(id);
     }
 
