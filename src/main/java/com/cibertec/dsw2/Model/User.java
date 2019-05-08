@@ -2,7 +2,7 @@ package com.cibertec.dsw2.Model;
 
 import javax.persistence.*;
 
-@SequenceGenerator(name="seq_user_id", initialValue=1)
+@SequenceGenerator(name="seq_user_id", initialValue=1, allocationSize=100)
 @Entity
 public class User {
 
