@@ -2,11 +2,12 @@ package com.cibertec.dsw2.Model;
 
 import javax.persistence.*;
 
+@SequenceGenerator(name="seq_user_id", initialValue=1)
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_user_id")
     @Column(name = "num_user_id")
     private Long num_user_id;
 
