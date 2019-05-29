@@ -11,4 +11,4 @@ phases:
 artifacts:
   files:
     - 'Dockerfile'
-    - 'target/ms_product-0.1.0.jar'
+    - 'target/ms_user-0.1.0.jar'
