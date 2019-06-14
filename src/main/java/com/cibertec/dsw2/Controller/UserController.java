@@ -1,69 +1,41 @@
 package com.cibertec.dsw2.Controller;
 
-import com.cibertec.dsw2.Repository.UserRepository;
+import com.cibertec.dsw2.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.net.URI;
-import java.util.List;
-import java.util.Optional;
 
 import com.cibertec.dsw2.Model.User;
 
 @RestController
 public class UserController {
 
-
-    @PersistenceContext
-    private EntityManager em;
-
-
     @Autowired
-    private UserRepository repository;
+    private UserService userService;
 
     @GetMapping(path = "/user")
-    public List<User> retriveAll() {
-        return repository.findAll();
+    public ResponseEntity<Object> retriveAll() {
+        return userService.getAll();
     }
 
     @GetMapping(path = "/user/{id}")
-    public User retriveOne(@PathVariable Long id) {
-        Optional<User> user = repository.findById(id);
-
-        return user.get();
+    public ResponseEntity<Object> retriveOne(@PathVariable Integer id) {
+        return userService.getOne(id);
     }
 
     @PostMapping(path = "/user")
     public ResponseEntity<Object> create(@RequestBody User user) {
-        User entity = repository.save(user);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(entity.getNum_user_id()).toUri();
-
-        return ResponseEntity.created(location).build();
+        return userService.insert(user);
     }
 
     @PutMapping(path = "/user/{id}")
-    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody User user) {
-        Optional<User> entity = repository.findById(id);
-
-        if (!entity.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        user.setNum_user_id(id);
-        repository.save(user);
-
-        return ResponseEntity.noContent().build();
-
+    public ResponseEntity<Object> update(@PathVariable Integer id, @RequestBody User user) {
+        return userService.update(id, user);
     }
 
     @DeleteMapping(path = "/user/{id}")
-    public void delete(@PathVariable Long id) {
-        repository.deleteById(id);
+    public ResponseEntity<Object> delete(@PathVariable Integer id) {
+        return userService.delete(id);
     }
 
 }
