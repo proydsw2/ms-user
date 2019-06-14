@@ -28,13 +28,13 @@ public class UserServiceImpl implements UserService {
 
       public ResponseEntity<Object> getAll() {
          try {
-            List<User> customers = userRepository.findAll();
+            List<User> users = userRepository.findAll();
 
-            if (customers == null) {
+            if (users == null) {
                return ResponseEntity.notFound().build();
             }
 
-            return ResponseEntity.ok().body(customers);
+            return ResponseEntity.ok().body(users);
          } catch (Exception e) {
             return ResponseEntity.badRequest().build();
          }
@@ -42,13 +42,13 @@ public class UserServiceImpl implements UserService {
 
       public ResponseEntity<Object> getOne(Integer id) {
          try {
-            Optional<User> customer = userRepository.findById(id);
+            Optional<User> card = userRepository.findById(id);
 
-            if (!customer.isPresent()) {
+            if (!card.isPresent()) {
                return ResponseEntity.notFound().build();
             }
 
-            return ResponseEntity.ok().body(customer);
+            return ResponseEntity.ok().body(card);
          } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
             User entity = userRepository.save(user);
 
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-              .buildAndExpand(entity.getNum_customer_id()).toUri();
+              .buildAndExpand(entity.getNum_user_id()).toUri();
 
             return ResponseEntity.ok().body(entity);
 
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
                return ResponseEntity.notFound().build();
             }
 
-            user.setNum_customer_id(id);
+            user.setNum_user_id(id);
             User cust = userRepository.save(user);
             return ResponseEntity.ok().body(cust);
          } catch (Exception e) {
